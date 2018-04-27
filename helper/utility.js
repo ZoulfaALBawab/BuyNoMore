@@ -5,13 +5,9 @@ exports.createSession = (req, res, newUser) => {
   });
 }
 
-
-
 exports.isLoggedIn = (req, res) => {
   return req.session ? !!req.session.user : false;
 };
-
-
 exports.checkUser = (req, res, next) => {
   if (!exports.isLoggedIn(req)) {
     res.status(404)

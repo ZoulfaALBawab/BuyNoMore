@@ -46,8 +46,8 @@ db.once('open', function() {
 			required: true
 		},
 		owner:{
-			type: Schema.Types.ObjectId,
-			ref: 'user'
+			type: String,
+			required: true
 			//OR: Schema.fullname !! 
 			//be sure from the function that will connect the 2 db.s
 		},
