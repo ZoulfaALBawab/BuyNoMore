@@ -15,9 +15,9 @@ class Register extends React.Component {
 			lastName: '',
 			email: '',
 			password: '',
-			phone: '',
-			location:{latitude: '',longtitude: ''}
+			confirmPass:''
 		}
+
 		this.handleClick = this.handleClick.bind(this);
 	}
 
@@ -48,22 +48,38 @@ class Register extends React.Component {
 		})
 	}
 
+	handleChangeFirstName(){
+
+
+	}
+
+	handleChangeLastName(){
+
+		
+	}
+
 
 	render(){
 
 		return (
 			<div>
-			<h1>Sign In</h1>
+			<h1>Sign Up</h1>
+			<br/>
+			<label>First Name:</label>
+			<br/>
+			<input type="text" name="Email Address" onChange={this.handleChangeFirstName}/>
+			<br/>
+			<label>LastName:</label>
+			<br/>
+			<input type="text" name="Password" onChange={this.handleChangeLastName}/>
 			<br/>
 			<label>Email Address:</label>
 			<br/>
-			<input type="text" name="Email Address" onChange={this.handleChangeName}/>
-			<br/>
+			<input type="text" name="Password" onChange={this.handleChangePass}/>
 			<label>Password:</label>
 			<br/>
-			<input type="text" name="Password" onChange={this.handleChangePass}/>
-			<br/>
-			<a href="/forgotPassword">Forgot Password</a>
+			<input type="text" name="Password" onChange={this.handleChangeConfirmPass}/>
+			<label>Confirm Password:</label>
 			<br/>
 			<button onClick={this.handleClickLogin}>Sign In</button>
 			</div>
