@@ -1,52 +1,70 @@
-      var express = require('express')
-      var path = require('path');
-      var bodyParser = require('body-parser');
-      var db = require('./db/index.js')
-      var mongoose = require('mongoose');
-      var session = require('express-session')
-      var cookieParser = require('cookie-parser')
-      var bcrypt = require('bcrypt');
-      var helper = require('./helper/utility')
-      var app = express()
+var express = require('express')
+var path = require('path');
+var bodyParser = require('body-parser');
+var db = require('./db/index.js')
+var mongoose = require('mongoose');
+var session = require('express-session')
+var cookieParser = require('cookie-parser')
+var bcrypt = require('bcrypt');
+var util = require('./helper/utility')
+var app = express()
+
+ //react connect
+ app.use(express.static(__dirname + '/../react-client/dist'));
 
 
+app.get('*', (req, res) => {                       
+  res.sendFile(path.resolve(path.join(__dirname, '/../react-client/dist/index.html')));                               
+});
 
-      var saltRounds = 10;
-      //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//this is  work 
+var saltRounds = 10;
+/////////////////////////////////////////////////////////////
 
-      app.use(bodyParser.json());
-      app.use(bodyParser.urlencoded({ extended: false }));
-      //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+/////////////////////////////////////////////////////////////
 
-      // app.use(express.static(path.join(__dirname, 'client')))
-      console.log("", __dirname)
-      //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
-      //Be sure !!!
-      // mongoose.Promise = global.Promise;
-      //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// app.use(express.static(path.join(__dirname, 'client')))
+console.log("here here here ", __dirname)
+/////////////////////////////////////////////////////////////
 
-      // session :: 
-      // authinticate transzction between Server and client ..  
-      app.use(session({
-      	secret: 'any string of text', 
-       resave: true, //even if nothing changed in the files ,, gana save it again .. 
-       saveUninitialized: false // for the database 
-      }));
-      //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Be sure !!!
+mongoose.Promise = global.Promise;
+/////////////////////////////////////////////////////////////
 
-      app.use(cookieParser())
-      app.set('view engine', 'html');
-      app.set('views',path.join(__dirname,'client'))
-      app.engine('html', require('ejs').renderFile);
-      //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// session :: 
+	// authinticate transzction between Server and client ..  
+	app.use(session({
+		secret: 'any string of text', 
+	 resave: true, //even if nothing changed in the files ,, gana save it again .. 
+	 saveUninitialized: false // for the database 
+	}));
+/////////////////////////////////////////////////////////////
 
-      app.post('/login', function(req,res){
-      var username = req.body.username;
-      var password = req.body.password;
-      db.Users.findOne({username:username}, function(err, data){
-      console.log("here's the data", data)
-      if(err){
-        console.log('login error');
+app.use(cookieParser())
+app.set('view engine', 'html');
+app.set('views',path.join(__dirname,'client'))
+app.engine('html', require('ejs').renderFile);
+///////////////////////////////////////////////////////////
+
+app.post('/login', function(req,res){
+ var username = req.body.username;
+ var password = req.body.password;
+ db.Users.findOne({username:username}, function(err, data){
+  console.log("here's the data", data)
+  if(err){
+    console.log('login error');
+  }
+  else {
+    if (data === null) {
+     console.log('here')
+     res.sendStatus(404)
+   }
+   else {
+    bcrypt.compare(password, data.password, function(err, found){
+      if(found) {
+        helper.createSession(req, res, data.username);
       }
       else {
         if (data === null) {
