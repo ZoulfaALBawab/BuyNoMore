@@ -6,7 +6,7 @@
       var session = require('express-session')
       var cookieParser = require('cookie-parser')
       var bcrypt = require('bcrypt');
-      var util = require('./helper/utility')
+      var helper = require('./helper/utility')
       var app = express()
 
 
@@ -61,7 +61,7 @@
           }
           else {
             console.log('session error');
-            res.sendStatus(404)
+            res.sendStatus(404);
             
           }
         })
@@ -73,9 +73,11 @@
       })
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       app.post('/signup', function(req,res){
+        console.log(req.body)
       var username = req.body.username;
       var password = req.body.password;
       var email = req.body.email;
+      //var passwordCnf = passwordCnf;
       db.Users.find({ username: username }, function(err, data){ 
         console.log('data shoul be seen', data)
         if(err){
@@ -93,18 +95,28 @@
            if(err){
             console.log('error in hash password')
           }
+          console.log("zzzzzzzzzzzzzzzzzzz",username);
+          console.log("zzzzzzzzzzzzzzzzzzz",email);
           var user = new db.Users({
             username:username,
             email:email,
             password:hash
           })
+          console.log("zzzzzzzzzzzzzzzzzzz",user);
           user.save(function(err, data){
            if(err){
-            console.log("ComeOnPlz!")
+            console.log(err)
           }
           else{
             helper.createSession(req, res, data.username);
+            res.sendStatus(200)
           }
+          // if (password!== passwordCnf){
+          //   res.sendStatus(200);
+          // }
+          // else{
+          //   res.sendStatus(404);
+          // }
         })	
         });
         });
@@ -139,6 +151,7 @@
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+      //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Now using promises :: 
       //in the obj. of find we will defide whatever we need to call ..
         // here we will ::
@@ -182,28 +195,31 @@
       //   .then (userId => res.status(200).json(UserId))
       //   console.log('user',user); 
       // },
+
+      getUserItems: (req, res) => {
+        const {userId} = req.params;
+        User.findbyId({userId} , (err, items) => {
+          if (err){
+            console.log(err)
+          }
+          else{
+            res.status(200).json(items)
+          }
+        })
+      }
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-      // newUserItem: (req, res, next) => {
+      newUserItem: (req, res, next) => {
 
-      //   // creat a new item 
-      //   const newItem = new Item (req.body);
-      //   console.log('newItem', newItem); 
-      //   newItem.save()
-      //   .then(item => {
-      //     res.status(201).json(item);
-      //   })
-      //   .catch(err => {
-      //     next(err);
-      //   })
-
-      //   // Get user 
-      //   // Assign user as a item's lender 
-      //   // Save the item 
-      //   // Add item to the user's leanding array 'items'
-      //   //Save the user 
-
-      // }
-
+        // creat a new item 
+      const newItem = new Item (req.body);
+      console.log('newItem', newItem); 
+         newItem.save((err, data)=>{
+        if(err){
+          res.sendStatus(404)
+        }
+        res.sendStatus(201)(item)
+      })
+      };
       /////////////////////////////////////////////////////////////////
       //Catch 404 Errors and forward them to error handler ::
       app.use(function(req, res, next){

@@ -13,15 +13,10 @@ db.once('open', function() {
  var users = new Schema({
 
  	
- 	firstName: {
+ 	username: {
  		type: String,
  		unique: true,
- 		required: true,
- 	},
- 	lastName: {
- 		type: String,
- 		unique: true,
- 		required: true,
+ 		required: true
  	},
  	email: {
  		type: String,
@@ -31,7 +26,8 @@ db.once('open', function() {
  		toLowerCase: true
  	},
  	password: {
-  		type: String
+  		type: String,
+  		required: true
  	},
  	passwordCnf: {
   		type: String
