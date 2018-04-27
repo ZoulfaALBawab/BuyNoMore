@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "nodemon server.js",
+    "react-dev": "webpack -d --watch",
+    "server-dev": "nodemon server/index.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +29,20 @@
     "mongoose": "^5.0.16",
     "morgan": "^1.9.0",
     "nodemon": "^1.17.3",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "jquery": "^3.1.1",
+    "react": "^15.4.2",
+    "react-bootstrap": "^0.32.1",
+    "react-browser-router": "^2.1.1",
+    "react-dom": "^15.4.2",
+    "react-history": "^0.18.2",
+    "react-image-upload": "0.0.1",
+    "react-radio-buttons": "^1.2.2",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-tap-event-plugin": "^3.0.2"
+  },
+  "devDependencies": {
+    "webpack-cli": "^2.0.15"
   }
 }
