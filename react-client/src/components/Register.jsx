@@ -52,12 +52,23 @@ class Register extends React.Component {
 	render(){
 
 		return (
-
-			<div>Register</div>
-
-			)
-
-		}
+			<div>
+			<h1>Sign In</h1>
+			<br/>
+			<label>Email Address:</label>
+			<br/>
+			<input type="text" name="Email Address" onChange={this.handleChangeName}/>
+			<br/>
+			<label>Password:</label>
+			<br/>
+			<input type="text" name="Password" onChange={this.handleChangePass}/>
+			<br/>
+			<a href="/forgotPassword">Forgot Password</a>
+			<br/>
+			<button onClick={this.handleClickLogin}>Sign In</button>
+			</div>
+			);
+	}
 
 
 	}
