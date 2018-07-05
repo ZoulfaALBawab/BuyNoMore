@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+
 import { BrowserRouter, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router';
 //import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { withRouter } from 'react-router-dom'

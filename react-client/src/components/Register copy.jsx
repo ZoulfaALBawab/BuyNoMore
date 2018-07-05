@@ -62,7 +62,7 @@ class Register extends React.Component {
 			<div>
 			<AppBar title ='login'/>
 
-			<TextField 
+			<TextField
 			hintText = "Enter Your First Name"
 			floatingLabelText = "First Name"
 			onChange = {(event, newValue) => this.setState({firstName : newValue})}
@@ -70,7 +70,7 @@ class Register extends React.Component {
 
 			<br/>
 
-			<TextField 
+			<TextField
 			hintText = "Enter Your Last Name"
 			floatingLabelText = "Last Name"
 			onChange = {(event, newValue) => this.setState({lastName : newValue})}
@@ -78,10 +78,10 @@ class Register extends React.Component {
 
 			<br/>
 
-			<TextField 
+			<TextField
 			hintText = "Enter Your Email Address"
 			floatingLabelText = "Email Address"
-			onChange = {(event, newValue) => this.setState({email : newValue})}	
+			onChange = {(event, newValue) => this.setState({email : newValue})}
 			/>
 
 			<br/>
@@ -122,8 +122,3 @@ class Register extends React.Component {
 
 
 	}
-
-
-
-	module 
-

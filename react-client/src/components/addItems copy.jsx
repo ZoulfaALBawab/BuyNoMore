@@ -1,10 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
+
 // import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 // import '../node_modules/bootstrap/dist/css/bootstrap.css';
 // import '../node_modules/bootstrap/dist/css/bootstrap-theme.css';
@@ -44,7 +41,7 @@ class AddItems extends React.Component{
 		this.setState({
 			PriceOpt: event.target.value });
 
-		if(this.state.PriceOpt === "chargeable"){  
+		if(this.state.PriceOpt === "chargeable"){
 			this.state.checkedPrice = true;
 		}
 	}
@@ -90,7 +87,7 @@ class AddItems extends React.Component{
 				itemPrice: this.state.itemPrice
 			},
 			success: (data) => {
-				console.log("Success in submiting item details!", data);	
+				console.log("Success in submiting item details!", data);
 				$("#successLendItemDetailsUpload").show();
 			},
 			error: (req, status, err) => {
@@ -103,7 +100,7 @@ class AddItems extends React.Component{
 	render(){
 
 		return (
-			
+
 			<div>
 			<h1>Add Items</h1>
 			<form>

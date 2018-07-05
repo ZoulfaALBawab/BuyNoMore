@@ -2,10 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
+
 // import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 // import '../node_modules/bootstrap/dist/css/bootstrap.css';
 // import '../node_modules/bootstrap/dist/css/bootstrap-theme.css';
@@ -17,7 +14,7 @@ class Home extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			galleryItems: ['ather' , 'qays' , 'mais']
+			galleryItems: []
 		}
 		// this.handleClickRegister = this.handleClickRegister.bind(this);
 		// this.handleClickSignIn = this.handleClickSignIn.bind(this);
@@ -34,7 +31,7 @@ class Home extends React.Component {
 			url:'/',
 			success: (data) => {
 				console.log("Success in retrieving Home Gallery items!", data);
-				this.setState({galleryItems: data});	
+				this.setState({galleryItems: data});
 			},
 			error: (req, status, err) => {
 				console.log("Error in retrieving Home Gallery items!", err);
@@ -50,7 +47,7 @@ class Home extends React.Component {
 	render(){
 		return (
 			<div>
-			  <div1> 
+			  <div1>
 			    <a href="/register" >Register</a>
 			    <a href="/login" >Sign In</a>
 			    <button onclick="handleClickAddItems()">Add Items</button>
@@ -60,13 +57,14 @@ class Home extends React.Component {
 			    <div3 class="row">
 
                   {
+<<<<<<< HEAD
                   		// this.state.galleryItems.map( (item) => {
           //           return (
           //             <div4 class='col-lg-3 col-md-4 col-sm-6'>
 				      //   <a href="#"><img src= {item.src} className="img-responsive img-thumbnail"/></a>
 				      //   <br/>
 				      // </div4>,
-				      
+
 				      // <div5>
 				      //   <p>{item.OwnerName}</p>
 				      //   <br/>
@@ -75,18 +73,36 @@ class Home extends React.Component {
 				      //   <a href="#">{item.price}</a>
 				      //   <br/>
 				      // </div5>
-				  
+
           //           )
                 // })
+=======
+                  	this.state.galleryItems.map( (item) => {
+                    return (
+                      <div4 class='col-lg-3 col-md-4 col-sm-6'>
+				        <a href="#"><img src= {item.src} className="img-responsive img-thumbnail"/></a>
+				        <br/>
+				      </div4>,
+				      
+				      <div5>
+				        <p>{item.OwnerName}</p>
+				        <br/>
+				        <a href="#">{item.title}</a>
+				        <br/>
+				        <a href="#">{item.price}</a>
+				        <br/>
+				      </div5>
+                    )
+                })
+>>>>>>> 709fabdb10d49927125dfc0d2ca65eac079d7a05
                   }
 			    </div3>
 			  </div2>
 			</div>
-			
+
 
 			);
 	}
 }
 
 export default Home;
-

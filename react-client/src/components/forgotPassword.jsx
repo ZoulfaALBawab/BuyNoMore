@@ -2,10 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
+
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../node_modules/bootstrap/dist/css/bootstrap-theme.css';
@@ -58,10 +55,10 @@ class ForgetPass extends React.Component {
 			<MuiThemeProvider>
 			<div>
 			<AppBar title ='forgot Password'/>
-			<TextField 
+			<TextField
 			hintText = "Enter Your Email Address"
 			floatingLabelText = "Email Address"
-			onChange = {(event, newValue) => this.setState({email : newValue})}	
+			onChange = {(event, newValue) => this.setState({email : newValue})}
 			/>
 			<br/>
 			<RaisedButton label='Send Email' primary={true} style={style} onClick={(event) => this.handleClickFortgotPass(event)}/>

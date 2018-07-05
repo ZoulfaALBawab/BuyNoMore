@@ -49,15 +49,14 @@ class Search extends React.Component {
 
 			   <input type="text" name="SearchItems" placeholder='Please enter the item name' onChange={this.handleSearchInput}/>
 			    <button type="button" class="btn btn-primary" onclick="handleClickSearch()">Search</button>
-                 {this.state.searchOut.map(item => {
+                 {this.state.searchOut.map((item) => {
 
                   return (
-
+                  	<div>
                    <div class='col-lg-3 col-md-4 col-sm-6'>
 				    <a href="#"><img src= {item.src} className="img-responsive img-thumbnail"/></a>
 				    <br/>
-				   </div>,
-
+				   </div>
 				   <div>
 				    <p>{item.OwnerName}</p>
 				     <br/>
@@ -65,6 +64,7 @@ class Search extends React.Component {
 				       <br/>
 				      <a href="#">{item.price}</a>
 				     <br/>
+				   </div>
 				   </div>
                )
             })}
